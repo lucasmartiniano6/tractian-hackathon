@@ -1,0 +1,15 @@
+{
+    "name": "Unidade Compressora - Frick 11",
+    "manufacturer": "YORK",
+    "model": "compressor-screw",
+    "frequence": "60 Hz",
+    "rotation": "1785 RPM",
+    "ip_rating": "IP55",
+    "operating_temperature": "40°C",
+    "location": "Made in Brazil",
+    "identification": "W22 NEMA",
+    "power": "100 HP (75 kW)",
+    "voltage": "208-230/460 V",
+    "current_state": "The machine appears to be in functional condition with no visible signs of rust or significant wear on its exterior components. The paint is intact, and connections seem secure. The environment around the machine appears clean, suggesting it is well-maintained.",
+    "additional_information": "The compressor operates at a high efficiency (95.4%) and has a continuous duty cycle. It's equipped with TEFC (Totally Enclosed Fan Cooled) enclosure, providing protection against dust and moisture, making it suitable for various industrial environments. Recommendations include regular maintenance of lubrication points and inspection of electrical connections to prevent downtime. Compatibility with TRACTIAN sensors for predictive maintenance is high, given the machine's critical role in reducing operational downtime."
+}

@@ -1,0 +1,15 @@
+{
+    "name": "M-890 SERVOMOTOR DE CARGA",
+    "manufacturer": "SUMITOMO HEAVY INDUSTRIES, LTD.",
+    "model": "servoMotor",
+    "frequence": "60 Hz",
+    "rotation": "1745 RPM",
+    "ip_rating": "IP55",
+    "operating_temperature": "Up to 40°C",
+    "location": "Japan",
+    "identification": "06ABR2017-1032958",
+    "power": "3 HP",
+    "voltage": "208-230/460 V",
+    "current_state": "The machine appears to be in a well-maintained state. There is no visible damage or excessive wear on the exterior. The environment seems clean and organized, suggesting routine maintenance. However, there is some dust accumulation on the derating plate, which may need cleaning for clarity.",
+    "additional_information": "The machine is compatible with TRACTIAN predictive maintenance sensors, as evidenced by the sensor tag. Regular inspections are advisable to ensure optimal performance. Consider dust protection solutions for the derating plate. Recommended to maintain a stock of essential spare parts to minimize downtime."
+}

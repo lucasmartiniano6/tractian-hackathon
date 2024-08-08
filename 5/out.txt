@@ -1,0 +1,15 @@
+{
+    "name": "MOTOR",
+    "manufacturer": "sew-eurodrive",
+    "model": "electricMotor-threePhase",
+    "frequence": "60 Hz",
+    "rotation": "685 RPM",
+    "ip_rating": "Unknown",
+    "operating_temperature": "Max Ambient 40°C",
+    "location": "Made in U.S.A.",
+    "identification": "General Electric Model 5M405BK511, Serial No. GD335014",
+    "power": "30 HP",
+    "voltage": "460 Volts",
+    "current_state": "The motor appears to have some surface rust and dirt accumulation, indicating that it is exposed to environmental factors and may benefit from more regular cleaning and maintenance.",
+    "additional_information": "The machine is equipped with a TRACTIAN sensor, which is beneficial for predictive maintenance. Given the visible rust and dirt, it's important to ensure that maintenance schedules include cleaning and inspections to prevent potential wear or damage that could affect performance. Verify compatibility with predictive sensors during maintenance checks."
+}
