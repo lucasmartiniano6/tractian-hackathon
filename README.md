@@ -7,7 +7,7 @@ Usage
 -----
 To install run:
 ```install
-./pip install -r requirements.txt
+pip install -r requirements.txt
 ```
 That's it! Now run this command to start the server:
 ```run
