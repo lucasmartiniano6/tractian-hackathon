@@ -25,6 +25,11 @@ FastAPI and Streamlit
 
 Results
 -----
+Based on the results obtained, we designed the website with a clean white theme, incorporating the TRACTIAN logo to ensure a clear and user-friendly interface. After the user inputs the required data, such as three images, model, manufacturer, and machine name, a detailed technical datasheet is generated using the information extracted from the images and the provided data.
+
+We observed that in cases where the images were of low quality, there were some minor inaccuracies. However, these inaccuracies remained within an acceptable margin, considering that certain details can be difficult to identify even with the naked eye. When the AI was unable to accurately identify a value, it classified the data as "unknown" to avoid providing incorrect information to the user.
+
+In conclusion, the final result was satisfactory, fully meeting the proposed objectives.
 
 Nice TODO:
 -----
