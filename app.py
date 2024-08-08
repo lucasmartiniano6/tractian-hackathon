@@ -1,28 +1,39 @@
 import streamlit as st
+from PIL import Image
+
+IMAGE_EXTENSIONS = [
+    'jpeg',
+    'jpg',
+    'png',
+    'svg'
+]
+
+SUBMIT = False
 
 # Set the title of the app
-st.title('Quick Streamlit App')
+st.title('Cadastro de itens novos')
 
-# Input text box
-user_input = st.text_input("Enter some text:")
+with st.form('formCadastro'):
+    # Input text box
+    machineModelUserInput = st.text_input("Insira aqui o modelo da máquina:", disabled=SUBMIT)
+    machineNameUserInput = st.text_input("Insira aqui o nome da máquina:", disabled=SUBMIT)
+    machineManufacturerUserInput = st.text_input("Insira aqui o fabricante:", disabled=SUBMIT)
 
-# Display the user input
-if user_input:
-    st.write("You entered:", user_input)
+    st.text(body='Faça o upload de imagens de sua máquina:')
 
-# Slider for numerical input
-number = st.slider("Pick a number", 0, 100)
+    image1 = st.file_uploader(label='Imagem 1', type=IMAGE_EXTENSIONS)
+    image2 = st.file_uploader(label='Imagem 2', type=IMAGE_EXTENSIONS)
+    image2 = st.file_uploader(label='Imagem 3', type=IMAGE_EXTENSIONS)
 
-# Display the selected number
-st.write("You picked the number:", number)
+    if image1:
+        st.image(image=Image.open((image1))) #display image 1
 
-# Checkbox
-if st.checkbox('Show dataframe'):
-    import pandas as pd
-    import numpy as np
+    st.divider()
 
-    df = pd.DataFrame(
-        np.random.randn(10, 5),
-        columns=('col %d' % i for i in range(5)))
+    additionalUserInput = st.text_input('Gostaria de nos fornecer alguma informação adicional? Sinta-se livre!', 
+                                        max_chars=500, 
+                                        placeholder='Insira aqui as informações adicionais',
+                                        disabled=SUBMIT)
 
-    st.dataframe(df)
+
+    st.form_submit_button('Finalizar cadastro')
