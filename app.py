@@ -16,7 +16,6 @@ IMAGE_EXTENSIONS = [
     'svg'
 ]
 
-MODAL = False
 
 MAPPING_KEYS = {
     'name': 'Name',
@@ -49,6 +48,8 @@ def callGPT(userInput: dict):
 ##############################################################################################
 # START OF THE FRONT-END
 
+st.image('tractian_no_background.png', width=500)
+
 # Set the title of the app
 st.title('Cadastro de itens novos')
 
@@ -76,7 +77,7 @@ with st.form('formCadastro', clear_on_submit=True):
                                         )
 
 
-    submitted = st.form_submit_button('Submeter')
+    submitted = st.form_submit_button('Submeter para análise')
     
     if submitted: #If submitted then callGPT
         encoded = [
@@ -99,11 +100,15 @@ with st.form('formCadastro', clear_on_submit=True):
 if response:
     st.divider()
     with st.container(border=True):
-        st.header('Ficha técnica do maquinário')
-        imgFetch = downloadItem(response['name'])
+        st.header('**Ficha técnica do maquinário**')
         
-        if imgFetch:
-            st.image(imgFetch)
+        try: #tentar pegar a imagem do google
+            imgFetch = downloadItem(response['name'])
+            if imgFetch:
+                st.image(imgFetch)
+
+        except: #nao rolou de pegar a imagem no google
+            pass
 
         try:
             details = TechnicalDetail.parse_obj(response)
@@ -111,7 +116,7 @@ if response:
                 detailsDict = details.dict()
                 
                 for key, value in detailsDict.items():
-                    st.write(f'{MAPPING_KEYS[key]}: {value}')
+                    st.write(f'**{MAPPING_KEYS[key]}**: {value}')
         except:
             st.write('Houve um erro. Tente novamente')
 

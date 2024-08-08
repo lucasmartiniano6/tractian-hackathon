@@ -6,25 +6,6 @@ from fastapi import FastAPI
 from detail import TechnicalDetail
 import base64, json
 
-class TechnicalDetail(BaseModel):
-    name: str = Field(..., description="Name of the machine")
-    manufacturer: str = Field(..., description="Manufacturer of the machine")
-    model: str = Field(..., description="Model of the machine")
-
-    frequence: str = Field(..., description="Frequency, usually described in Heartz (Hz)")
-    rotation: str = Field(..., description="Rotation, usually described in RPM")
-    ip_rating: str = Field(..., description="IP Rating of the machine")
-    operating_temperature : str = Field(..., description="Operating Ambient Temperature")
-    location: str = Field(..., description="The location where the machine was made")
-    identification: str
-    power: str
-    voltage: str 
-
-    current_state: str = Field(..., description="Description of the currente state of the machine based on the given images")
-    #references: str = Field(..., description="Cite the reference of where this information about the machine was found")
-    additional_information: str = Field(..., description="Any additional relevant information about the machine that can be useful.")
-
-
 # Defining UserInput class for typing
 class UserInput(BaseModel):
     machineName: str
