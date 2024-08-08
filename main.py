@@ -2,7 +2,7 @@ from typing import List
 from pydantic import BaseModel, Field
 from dotenv import load_dotenv
 from openai import OpenAI
-import base64
+from fastapi import FastAPI
 
 class TechnicalDetail(BaseModel):
     name: str = Field(..., description="Name of the machine")
@@ -21,16 +21,16 @@ class TechnicalDetail(BaseModel):
     current_state: str = Field(..., description="Description of the currente state of the machine based on the given images")
     additional_info: str = Field(..., description="Any additional information about the machine that might be useful.")
 
-def encode_image(image_path):
-  """Helper function to encode the image as Base64"""
-  with open(image_path, "rb") as image_file:
-    return base64.b64encode(image_file.read()).decode('utf-8')
 
-def analyze_images(query: str, paths: List[str]):
+# Defining UserInput class for typing
+class UserInput(BaseModel):
+    machineName: str
+    machineModel: str
+    machineManufacturer: str
+    images: List[str]
+
+def analyze_images(query: str, images: List[str]):
     """Query GPT-4 Vision to analyze the given images with the json as context."""
-    images = [] 
-    for img_path in paths:
-       images.append(encode_image(img_path))
     assert len(images) == 3
 
     load_dotenv()
@@ -70,20 +70,20 @@ def analyze_images(query: str, paths: List[str]):
         ],
         }
     ],
-    #max_tokens=1000,
     response_format=TechnicalDetail
     )
     return response.choices[0].message.content
 
-if __name__ == "__main__":
-    name = "10009204 - MOTOR ROLOS FIXO (LADO B) 40CV"
-    manufacturer = "WEG"
-    model = "electricMotor-threePhase"
+
+app = FastAPI()
+
+@app.post('/') #Post GPT response
+def inference(userInput: UserInput):
+
     query = f"""
-    You are presented with images from a machine that has the model {model},
-    manufacturer {manufacturer} and name {name}. Now analyze the image
+    You are presented with images from a machine that has the model {userInput.machineModel},
+    manufacturer {userInput.machineManufacturer} and name {userInput.machineName}. Now analyze the image
     and present detailed technical information about this particular machine. Return as a JSON file.
     """
 
-    res = analyze_images(query, ["1/img1.jpg", "1/img2.jpg", "1/img3.jpg"])
-    print(res)
+    return analyze_images(query=query, images=userInput.images)

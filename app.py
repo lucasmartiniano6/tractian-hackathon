@@ -21,6 +21,7 @@ def callGPT(userInput: dict):
         The values are uploaded to ChatGPT by an API and writes the response in the user screen
     '''
     response = requests.post(url='http://127.0.0.1:8000/', data=json.dumps(userInput))
+    st.write(response)
     response = response.json()
     st.write(response)
 
