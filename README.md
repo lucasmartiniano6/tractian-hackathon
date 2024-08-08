@@ -1,4 +1,7 @@
 # Hackathon TRACTIAN 
+We present a web application to fetch relevant information from machine images, such as power and operating temperature.
+
+![start](imgs/screenshot.png)
 
 Usage
 -----
@@ -33,6 +36,9 @@ We observed that in cases where the images were of low quality, there were some 
 
 In conclusion, the final result was satisfactory, fully meeting the proposed objectives.
 
+Example of the app running:
+![end](imgs/screenshot2.png)
+
 Nice TODO:
 -----
 * Test multiple models and evaluate the cost benefit for each one.
@@ -42,5 +48,7 @@ Nice TODO:
 
 Refs:
 -----
-* 
-    
+* https://platform.openai.com/docs/guides/vision
+* https://platform.openai.com/docs/guides/vision
+* https://fastapi.tiangolo.com/reference/
+* https://docs.streamlit.io

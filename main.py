@@ -148,13 +148,13 @@ if __name__ == "__main__":
     # This part was only used for local testing and it's not necessary when running the full application
     pastas = [1, 2, 3, 4, 5, 10]
     for pasta in pastas:
-        with open(f"{pasta}/asset_info.json") as f:
+        with open(f"imgs/{pasta}/asset_info.json") as f:
             assets = json.load(f)
         machineModel = assets['model']
         machineName = assets['name']
         machineManufacturer = assets['manufacturer']
 
-        paths = [f"{pasta}/img1.jpg", f"{pasta}/img2.jpg", f"{pasta}/img3.jpg"]
+        paths = [f"imgs/{pasta}/img1.jpg", f"imgs/{pasta}/img2.jpg", f"imgs/{pasta}/img3.jpg"]
         images = []
         for p in paths:
             images.append(encode_image(p))
@@ -218,7 +218,7 @@ if __name__ == "__main__":
         Also, additional relevant information: Insights and recommendations that support effective maintenance, predictive analysis, and operational efficiency.
         """
         res = analyze_images(query, images)
-        with open(f"{pasta}/out.txt", "w") as f:
+        with open(f"imgs/{pasta}/out.txt", "w") as f:
             f.write(res)
         print(f"Done with {pasta}")
         #print(res)
