@@ -6,15 +6,19 @@ from fastapi import FastAPI
 from detail import TechnicalDetail
 import base64, json
 
-# Defining UserInput class for typing
 class UserInput(BaseModel):
+    """
+    Defining UserInput class for typing
+    """
     machineName: str
     machineModel: str
     machineManufacturer: str
     images: List[str]
 
-def encode_image(image_path):
-  """Helper function to encode the image as Base64"""
+def encode_image(image_path: str):
+  """
+  Helper function to encode the image as Base64
+  """
   with open(image_path, "rb") as image_file:
     return base64.b64encode(image_file.read()).decode('utf-8')
 
@@ -77,6 +81,7 @@ app = FastAPI()
 
 @app.post('/') #Post GPT response
 def inference(userInput: UserInput):
+    # This is the query used by the User application
     query = f"""
     You are presented with 3 images from a machine that has the model "{userInput.machineModel}", manufacturer "{userInput.machineManufacturer}"
     and name "{userInput.machineName}". Now analyze the image and present detailed technical information about this particular machine.
@@ -139,6 +144,8 @@ def inference(userInput: UserInput):
     return analyze_images(query=query, images=userInput.images)
 
 if __name__ == "__main__":
+    # Here we run the gpt4o API in the folders and write out the outputs. We use it to test our prompts in various scenarios
+    # This part was only used for local testing and it's not necessary when running the full application
     pastas = [1, 2, 3, 4, 5, 10]
     for pasta in pastas:
         with open(f"{pasta}/asset_info.json") as f:
