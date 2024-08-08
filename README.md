@@ -21,6 +21,8 @@ We are using gpt-4o to analyze the image and parse the results into a pydantic J
 
 FastAPI and Streamlit
 -----
+We used FastAPI to create the API that calls GPT and Streamlit to build the UI App. Streamlit is a very useful python package that helps us to create UI very fast, which is very important in a hackathon. On the other hand, streamlit is not very flexible with styles, which is a con.
+FastAPI is very useful too. The API receives a HTTP request containing the informations submitted by the user and we use the informations to create the prompt. As a result from the API, the UI App receives a JSON containing informations that GPT infered, such as the machinery voltage.
 
 
 Results
@@ -33,6 +35,10 @@ In conclusion, the final result was satisfactory, fully meeting the proposed obj
 
 Nice TODO:
 -----
+* Test multiple models and evaluate the cost benefit for each one.
+* Create a Multi-LLM-Agent pipeline that gives us the most important infos for maintenance for each submission. This pipeline allows us to personalize the returned infos and filters other informations that we do not care about for that type of machinery.
+* Migrate from Python Streamlit to another framework. Streamlit is not very scalable, which is a big problem. Other frameworks such: React, Vue, Django, etc., would be better.
+* Sync the GPT result with update informations from the internet using web scrapping. We used web scrapping to fetch the image given the name, but we do not digged very deep into this solution because of time issues.
 
 Refs:
 -----
