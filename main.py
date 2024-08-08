@@ -2,6 +2,7 @@ from typing import List
 from dotenv import load_dotenv
 from openai import OpenAI
 import base64
+from fastapi import FastAPI
 
 # Helper function to encode the image
 def encode_image(image_path):
@@ -9,10 +10,10 @@ def encode_image(image_path):
     return base64.b64encode(image_file.read()).decode('utf-8')
 
 def query_gpt(query: str, paths: List[str]):
-    images = [] 
-    for img_path in paths:
-       images.append(encode_image(img_path))
-    assert len(images) == 3
+    # images = [] 
+    # for img_path in paths:
+    #    images.append(encode_image(img_path))
+    assert len(paths) == 3
 
     load_dotenv()
     client = OpenAI()
@@ -51,5 +52,8 @@ def query_gpt(query: str, paths: List[str]):
     )
     return response.choices[0]
 
-if __name__ == "__main__":
-    print(query_gpt("what are those digits?", ["digito.png", "digito5.jpeg", "digito.png"]))
+app = FastAPI()
+
+@app.post('/')
+def inference():
+    return query_gpt("what are those digits?", ["digito.png", "digito5.jpeg", "digito.png"])
