@@ -1,0 +1,15 @@
+{
+    "name": "26723 - RD - Eixo de Saída",
+    "manufacturer": "EISENBEISS",
+    "model": "reductorGearbox-parallelShaft",
+    "frequence": "60 Hz",
+    "rotation": "1725 RPM",
+    "ip_rating": "Not specified",
+    "operating_temperature": "40°C",
+    "location": "Not specified",
+    "identification": "SN: H0104041690",
+    "power": "1.25 HP",
+    "voltage": "208V",
+    "current_state": "The machine appears in good condition with no visible external damage. The surface is clean, and components such as the wiring and connector are in place and seem well-maintained. No signs of wear or immediate need for repairs are apparent from the images.",
+    "additional_information": "The machine is equipped with a TEFC (Totally Enclosed Fan Cooled) enclosure, which provides protection against dust and moisture, ideal for a variety of industrial environments. The efficiency is 75.5%, and the power factor is 60%. It is advisable to regularly monitor the bearings (DE and ODE are both 6203) for wear and replace them as required. Additionally, the presence of a TRACTIAN sensor indicates the machine is set up for predictive maintenance, which should help in early detection of potential issues."
+}

@@ -1,0 +1,15 @@
+{
+    "name": "10009204 - MOTOR ROLOS FIXO (LADO B) 40CV",
+    "manufacturer": "WEG",
+    "model": "electricMotor-threePhase",
+    "frequence": "60 Hz",
+    "rotation": "1755 RPM",
+    "ip_rating": "IP55",
+    "operating_temperature": "Ambient 40°C",
+    "location": "Mexico",
+    "identification": "00158ET3E145T-W22",
+    "power": "1.5 HP (1.1 kW)",
+    "voltage": "230/460 V",
+    "current_state": "The machine appears to be in a generally used condition with visible signs of wear, especially around the mounting and casing areas. Rust and dirt accumulation are apparent on the machine's surface, which suggests exposure to a potentially harsh environment.",
+    "additional_information": "The motor is designed for severe duty with a NEMA Premium rating. It features a TEFC enclosure and is suitable for use with a variable frequency drive (VFD). Routine cleaning is recommended to prevent dirt and rust build-up affecting performance. Ensure proper lubrication as specified with Mobil Polyrex EM. TRACTIAN's predictive maintenance sensors can be installed to monitor vibration, temperature, and RPM for preventive actions."
+}

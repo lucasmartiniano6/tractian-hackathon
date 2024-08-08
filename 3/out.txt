@@ -1,0 +1,15 @@
+{
+    "name": "616HP01RD01 - Redutor Bomba HP 20 SD01",
+    "manufacturer": "STM Bologna",
+    "model": "reductorGearbox",
+    "frequence": "60 Hz",
+    "rotation": "1730 RPM",
+    "ip_rating": "NEMA TFC",
+    "operating_temperature": "Not specified",
+    "location": "Bologna, Italy",
+    "identification": "06APR2017",
+    "power": "3 HP",
+    "voltage": "208-230/460 V",
+    "current_state": "The gearbox and motor appear to be in a generally good condition with some visible dust and dirt accumulation. There are no significant signs of wear or damage visible externally. The protective components seem intact and secure.",
+    "additional_information": "The machine appears compatible with TRACTIAN's sensors as shown. Regular maintenance should include cleaning and inspection of electrical connections and seals to ensure optimal performance. Keeping spare belts and periodic lubrication will ensure ongoing efficiency. Predictive sensors can monitor vibration and temperature to predict maintenance needs."
+}
