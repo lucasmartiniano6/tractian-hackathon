@@ -1,15 +1,18 @@
+from typing import List
 from dotenv import load_dotenv
 from openai import OpenAI
 import base64
 
-# Function to encode the image
+# Helper function to encode the image
 def encode_image(image_path):
   with open(image_path, "rb") as image_file:
     return base64.b64encode(image_file.read()).decode('utf-8')
 
-def run():
-    # Getting the base64 string
-    base64_image = encode_image("digito.png")
+def query_gpt(query: str, paths: List[str]):
+    images = [] 
+    for img_path in paths:
+       images.append(encode_image(img_path))
+    assert len(images) == 3
 
     load_dotenv()
     client = OpenAI()
@@ -21,19 +24,32 @@ def run():
         "content": [
             {
             "type": "text",
-            "text": "What is the digit in this image?",
+            "text": query
             },
             {
             "type": "image_url",
             "image_url": {
-                "url": f"data:image/jpeg;base64,{base64_image}"
+                "url": f"data:image/jpeg;base64,{images[0]}"
             },
             },
+            {
+            "type": "image_url",
+            "image_url": {
+                "url": f"data:image/jpeg;base64,{images[1]}"
+            },
+            },
+            {
+            "type": "image_url",
+            "image_url": {
+                "url": f"data:image/jpeg;base64,{images[2]}"
+            },
+            }
         ],
         }
     ],
     max_tokens=300,
     )
-    print(response.choices[0])
+    return response.choices[0]
 
-run()
+if __name__ == "__main__":
+    print(query_gpt("what are those digits?", ["digito.png", "digito5.jpeg", "digito.png"]))
