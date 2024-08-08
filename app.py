@@ -1,10 +1,12 @@
 import streamlit as st
-from PIL import Image
 from typing import List
 import requests
 import json
 import base64
-from io import BytesIO
+from webScrap import downloadItem
+from pydantic import BaseModel
+from detail import TechnicalDetail
+import time
 
 # Defining valid image extensions 
 IMAGE_EXTENSIONS = [
@@ -14,6 +16,25 @@ IMAGE_EXTENSIONS = [
     'svg'
 ]
 
+MODAL = False
+
+MAPPING_KEYS = {
+    'name': 'Name',
+    'manufacturer': 'Manufacturer',
+    'model': 'Model',
+    'identification': 'Identification',
+    'localization': 'Localization',
+    'power': 'Power',
+    'voltage': 'Voltage',
+    'frequence': 'Frequence',
+    'rotation': 'Rotation',
+    'ip_rating': 'IP Rating',
+    'operating_temperature': 'Operating Temperature',
+    'current_state': 'Current State',
+    'additional_info': 'Additional Info'
+}
+
+response = None
 
 def callGPT(userInput: dict):
     '''
@@ -21,9 +42,12 @@ def callGPT(userInput: dict):
         The values are uploaded to ChatGPT by an API and writes the response in the user screen
     '''
     response = requests.post(url='http://127.0.0.1:8000/', data=json.dumps(userInput))
-    st.write(response)
-    response = response.json()
-    st.write(response)
+    return response.json()
+
+
+
+##############################################################################################
+# START OF THE FRONT-END
 
 # Set the title of the app
 st.title('Cadastro de itens novos')
@@ -52,9 +76,9 @@ with st.form('formCadastro', clear_on_submit=True):
                                         )
 
 
-    submitted = st.form_submit_button('Finalizar cadastro')
+    submitted = st.form_submit_button('Submeter')
     
-    if submitted: #If submitted then 
+    if submitted: #If submitted then callGPT
         encoded = [
             base64.b64encode(image1.getvalue()).decode('utf-8'),
             base64.b64encode(image2.getvalue()).decode('utf-8'),
@@ -65,7 +89,35 @@ with st.form('formCadastro', clear_on_submit=True):
             'machineName': machineNameUserInput, 
             'machineModel': machineModelUserInput, 
             'machineManufacturer': machineManufacturerUserInput, 
-            'images': encoded
+            'images': encoded,
+            'additionalInfo': additionalUserInput
         }
         
-        callGPT(userInput=inputs)
+        response = callGPT(userInput=inputs)
+        response = json.loads(response)
+        
+if response:
+    st.divider()
+    with st.container(border=True):
+        st.header('Ficha técnica do maquinário')
+        imgFetch = downloadItem(response['name'])
+        
+        if imgFetch:
+            st.image(imgFetch)
+
+        try:
+            details = TechnicalDetail.parse_obj(response)
+            if details:
+                detailsDict = details.dict()
+                
+                for key, value in detailsDict.items():
+                    st.write(f'{MAPPING_KEYS[key]}: {value}')
+        except:
+            st.write('Houve um erro. Tente novamente')
+
+@st.dialog('Item cadastrado com sucesso!')
+def finalDialog():
+    pass
+
+if st.button('Finalizar cadastro'):
+    finalDialog()
